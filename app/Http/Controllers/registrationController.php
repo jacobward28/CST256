@@ -15,7 +15,8 @@ class registrationController extends Controller
      */
     public function register(Request $request) 
     {
-        $user = new userModel(0, $request->input('username'), $request->input('password'));
+        $user = new userModel( $request->input('username'), $request->input('password'), $request->input('firstname'),
+            $request->input('lastname'), $request->input('email'), $request->input('phone'));
         $ds = new dataService();
         $register = $ds->reg($user);
         $register;

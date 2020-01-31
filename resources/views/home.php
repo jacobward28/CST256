@@ -1,3 +1,9 @@
+<?php
+use Illuminate\Http\Request;
+use Resources\views\navbar;
+?>
+
+
 <html>
 <head>
 </head>

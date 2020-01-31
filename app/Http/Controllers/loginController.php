@@ -14,13 +14,13 @@ class loginController extends Controller
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
     public function log(Request $request) {
-       $user = new userModel(NULL, $request->input('username'), $request->input('password'));
+       $user = new userModel($request->input('username'), $request->input('password'), null, null, null, null);
        
        $securityService = new securityService();
        
        $result = $securityService->login($user);
        
-                       return view('loggedin');
+                       return view('home');
                         
                     }
             }

@@ -11,7 +11,7 @@ class databaseController extends Controller
     private $dbservername = "localhost";
     private $dbusername = "root";
     private $dbpassword = "root";
-    private $dbname = "magic_card_list";
+    private $dbname = "256_milestone";
     
     /**
      *  function to connect to the database using set variables that can be called in other files

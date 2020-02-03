@@ -1,3 +1,5 @@
+@extends('layouts.appmasterlogin')
+@section('title', 'Login Page')
 <html>
 <head>
 	<title>Login</title>
@@ -6,6 +8,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
+@section('content')
 <body>
 	<form action="login" method="POST">
 	<input type="hidden" name="_token"
@@ -18,7 +21,7 @@
       <input type="text" class="form-control" placeholder="Username" name="username" maxlength="25" required>
     </div>
     <div class="col">
-      <input type="text" class="form-control" placeholder="Password" name="password" maxlength="25" required/>
+      <input type="password" class="form-control" placeholder="Password" name="password" maxlength="25" required/>
     </div>
   </div>
   <br>
@@ -33,4 +36,5 @@
   </div>
  </form>
 </body>
+@endsection
 </html>

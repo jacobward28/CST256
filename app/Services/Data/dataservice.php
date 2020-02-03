@@ -39,8 +39,6 @@ class dataService {
                 $row = mysqli_fetch_assoc($result);
                 //$_SESSION['id'] = $row['ID'];
                 //$_SESSION['username'] = $row['username'];
-                echo "You Logged in With: " . $username . " " . $password;
-                echo '<br>';
             }
             else {
                 echo "login failed";

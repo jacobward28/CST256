@@ -2,8 +2,10 @@
 use Illuminate\Http\Request;
 use Resources\views\navbar;
 ?>
+@extends('layouts.appmaster')
+@section('title', 'Home Page')
 
-
+@section('content')
 <html>
 <head>
 </head>
@@ -14,5 +16,5 @@ use Resources\views\navbar;
 
 </body>
 
-
+@endsection
 </html>

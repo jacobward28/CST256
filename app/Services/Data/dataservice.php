@@ -3,6 +3,7 @@ namespace App\Services\Data;
 use Illuminate\Http\Request;
 use App\Http\Controllers\databaseController;
 use App\Models\userModel;
+use App\Http\Controllers\userController;
 
 class dataService {
     
@@ -50,6 +51,28 @@ class dataService {
 
             }
         }
+        
+        public function Read()
+        {
+            $db = new databaseController();
+            $connect = $db->connect();
+            
+
+            
+            $sql_stmt = "SELECT * FROM users";
+            $result = mysqli_query($connect, $sql_stmt);
+            $row = mysqli_fetch_assoc($result);
+            
+            $firstname = $row['firstname'];
+            $lastname = $row['lastname'];
+            $username = $row['username'];
+            $role = $row['role'];
+            
+
+
+            
+        }
+        
     }
 
    

@@ -34,7 +34,7 @@
           <a class="dropdown-item" href="../Views/AddBook.php"></a>
           <a class="dropdown-item" href="../Views/admin.php">View Jobs</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="../Views/ShowUsers.php">Show All Users</a>
+          <a class="dropdown-item" href="displayUser">Show All Users</a>
 		  <a class="dropdown-item" href="../Views/ShowOrder_Admin.php">Show All Listings</a>
 		  <a class="dropdown-item" href="../Views/SearchOrderbydate.php">Show Order By Date</a>
 		  

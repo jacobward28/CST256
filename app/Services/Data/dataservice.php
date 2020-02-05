@@ -3,6 +3,7 @@ namespace App\Services\Data;
 use Illuminate\Http\Request;
 use App\Http\Controllers\databaseController;
 use App\Models\userModel;
+use App\Http\Controllers\userController;
 
 class dataService {
     
@@ -38,15 +39,10 @@ class dataService {
             $result = mysqli_query($connect, $sql_statement);
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
-<<<<<<< HEAD
-                //$_SESSION['id'] = $row['ID'];
-                //$_SESSION['username'] = $row['username'];
-=======
                 $role = $row["role"];
                 $userName = $row["username"];
                 $_SESSION["role"] = $role;
                 $_SESSION["username"] = $username;
->>>>>>> e578f2bdc96f7741d79e5bbbb0b4f7371dbe504a
             }
             else {
                 echo "login failed";
@@ -55,6 +51,28 @@ class dataService {
 
             }
         }
+        
+        public function Read()
+        {
+            $db = new databaseController();
+            $connect = $db->connect();
+            
+
+            
+            $sql_stmt = "SELECT * FROM users";
+            $result = mysqli_query($connect, $sql_stmt);
+            $row = mysqli_fetch_assoc($result);
+            
+            $firstname = $row['firstname'];
+            $lastname = $row['lastname'];
+            $username = $row['username'];
+            $role = $row['role'];
+            
+
+
+            
+        }
+        
     }
 
    

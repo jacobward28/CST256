@@ -18,11 +18,6 @@
       <li class="nav-item">
         <a class="nav-link" href="../Views/AboutUS.php">About</a>
       </li>
-<<<<<<< HEAD:resources/views/Layouts/navbar.blade.php
-      <?php 
-     
-      //if ($_SESSION['role']==1){
-=======
       <li class="nav-item">
         <a class="nav-link" href="../Views/AboutUS.php">Profile</a>
       </li>
@@ -30,7 +25,6 @@
      if (isset($_SESSION["role"]) && $_SESSION["role"]==1)
      {
          
->>>>>>> e578f2bdc96f7741d79e5bbbb0b4f7371dbe504a:resources/views/navbar.php
       ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,7 +34,7 @@
           <a class="dropdown-item" href="../Views/AddBook.php"></a>
           <a class="dropdown-item" href="../Views/admin.php">View Jobs</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="../Views/ShowUsers.php">Show All Users</a>
+          <a class="dropdown-item" href="displayUser">Show All Users</a>
 		  <a class="dropdown-item" href="../Views/ShowOrder_Admin.php">Show All Listings</a>
 		  <a class="dropdown-item" href="../Views/SearchOrderbydate.php">Show Order By Date</a>
 		  
@@ -48,7 +42,7 @@
         </div>
       </li>
       <?php 
-      //}
+      }
       ?>
       
       

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\userModel;
 use App\Services\Business\securityService;
+use App\Services\Data\dataservice;
 
 class loginController extends Controller
 {
@@ -14,27 +15,25 @@ class loginController extends Controller
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
     public function log(Request $request) {
-       $user = new userModel($request->input('username'), $request->input('password'), null, null, null, null);
+
+       $user = new userModel($request->input('username'), $request->input('password'), null, null, null, null, null);
        
        $securityService = new securityService();
        
        $result = $securityService->login($user);
        
+       if($_SESSION["role"] == 3)
+       {
+           return view('suspended');
+       }
+       else
+       {
+       
        return view('home');
+        }
                         
         }
-        
-        public function onLogout() {
-            
-            session_start();
-            
-            session_unset();
-            session_destroy();
-            
-             //echo $_SESSION['userid']. " " . $SESSION['username'];
-            
-           return view('login');
-        }
+       
         
     }
 

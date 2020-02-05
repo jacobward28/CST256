@@ -13,13 +13,14 @@ class userModel {
     private $phone;
     private $role;
     
-    function __construct($username, $password, $firstname, $lastname, $email, $phone) {
+    function __construct($username, $password, $firstname, $lastname, $email, $phone, $role) {
         $this->username = $username;
         $this->password = $password;
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->email = $email;
         $this->phone = $phone;
+        $this->role = $role;
     }
     
     
@@ -82,6 +83,11 @@ class userModel {
     /**
      * @param mixed $id
      */
+    
+    public function getRole()
+    {
+        return $this->role;
+    }
     public function setId($id)
     {
         $this->id = $id;
@@ -133,6 +139,10 @@ class userModel {
     public function setPhone($phone)
     {
         $this->phone = $phone;
+    }
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 
    

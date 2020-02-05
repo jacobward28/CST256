@@ -36,3 +36,15 @@ Route::get('/logout', function()
 });
 
 route::post('/doLogout', 'loginController@onLogout');
+
+Route::get('/displayUser', function()
+{
+    return view('displayUser');
+});
+
+route::post('/showUsers', 'userController@displayUsers');
+
+Route::get('/suspended', function()
+{
+    return view('suspended');
+});

@@ -8,7 +8,7 @@ session_start();
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">BTI Networking</a>
+  <a class="navbar-brand" href="#">Job Postings</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,7 +23,7 @@ session_start();
       </li>
       <?php 
      
-      if ($_SESSION['role']==1){
+      //if ($_SESSION['role']==1){
       ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,17 +31,17 @@ session_start();
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="../Views/AddBook.php"></a>
-          <a class="dropdown-item" href="../Views/admin.php">View Books</a>
+          <a class="dropdown-item" href="../Views/admin.php">View Jobs</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="../Views/ShowUsers.php">Show All Users</a>
-		  <a class="dropdown-item" href="../Views/ShowOrder_Admin.php">Show All Orders</a>
+		  <a class="dropdown-item" href="../Views/ShowOrder_Admin.php">Show All Listings</a>
 		  <a class="dropdown-item" href="../Views/SearchOrderbydate.php">Show Order By Date</a>
 		  
         </div>
         </div>
       </li>
       <?php 
-      }
+      //}
       ?>
       <!-- <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
@@ -49,7 +49,7 @@ session_start();
       
     </ul>
     <form class="form-inline my-2 my-lg-0" action="search.php">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search Book by title" aria-label="Search" name ="search" >
+      <input class="form-control mr-sm-2" type="search" placeholder="Search Job by Title" aria-label="Search" name ="search" >
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     <form class="form-inline my-2 my-lg-0" action="../logout.php">

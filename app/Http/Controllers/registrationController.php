@@ -20,7 +20,6 @@ class registrationController extends Controller
         $ds = new dataService();
         $register = $ds->reg($user);
         $register;
-        return view('login');
-        
+        return view('login');  
     }
 }

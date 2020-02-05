@@ -29,3 +29,10 @@ Route::get('/registrationpage', function () {
 
 //points the view to the controller to process the function and send back to the view
 Route::post('/register', 'registrationController@register');
+
+Route::get('/logout', function()
+{
+    return view('logout');
+});
+
+route::post('/doLogout', 'loginController@onLogout');

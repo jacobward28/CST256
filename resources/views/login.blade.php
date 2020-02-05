@@ -1,5 +1,6 @@
 @extends('layouts.appmasterlogin')
 @section('title', 'Login Page')
+<?php session_start()?>
 <html>
 <head>
 	<title>Login</title>

@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -21,9 +18,19 @@ session_start();
       <li class="nav-item">
         <a class="nav-link" href="../Views/AboutUS.php">About</a>
       </li>
+<<<<<<< HEAD:resources/views/Layouts/navbar.blade.php
       <?php 
      
       //if ($_SESSION['role']==1){
+=======
+      <li class="nav-item">
+        <a class="nav-link" href="../Views/AboutUS.php">Profile</a>
+      </li>
+     <?php 
+     if (isset($_SESSION["role"]) && $_SESSION["role"]==1)
+     {
+         
+>>>>>>> e578f2bdc96f7741d79e5bbbb0b4f7371dbe504a:resources/views/navbar.php
       ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,16 +50,14 @@ session_start();
       <?php 
       //}
       ?>
-      <!-- <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li> -->
+      
       
     </ul>
     <form class="form-inline my-2 my-lg-0" action="search.php">
       <input class="form-control mr-sm-2" type="search" placeholder="Search Job by Title" aria-label="Search" name ="search" >
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-    <form class="form-inline my-2 my-lg-0" action="../logout.php">
+    <form class="form-inline my-2 my-lg-0" action="doLogout">
       <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Log Out</button>
     </form>
   </div>

@@ -1,5 +1,6 @@
 @extends('layouts.appmasterlogin')
 @section('title', 'Login Page')
+<<<<<<< HEAD
 <html>
 <head>
 	<title>Login</title>
@@ -7,12 +8,21 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+=======
+<?php session_start()?>
+<html>
+<head>
+>>>>>>> e578f2bdc96f7741d79e5bbbb0b4f7371dbe504a
 </head>
 @section('content')
 <body>
 	<form action="login" method="POST">
 	<input type="hidden" name="_token"
 	value="<?php echo csrf_token();?> "/>
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:resources/views/login.blade.php
+>>>>>>> e578f2bdc96f7741d79e5bbbb0b4f7371dbe504a
 	<div class="container">
   	<h2 align="center">Login</h2>
   	
@@ -37,4 +47,19 @@
  </form>
 </body>
 @endsection
+<<<<<<< HEAD
+=======
+========
+	Username: <input name="username" type="text"><br>
+	Password: <input name="password" type="password"><br>
+	
+	<input name="login" value="login" type="submit"><br>
+	</form>
+
+<a href="registrationpage">No Account Click Here!</a>
+</body>
+
+
+>>>>>>>> e578f2bdc96f7741d79e5bbbb0b4f7371dbe504a:resources/views/login.php
+>>>>>>> e578f2bdc96f7741d79e5bbbb0b4f7371dbe504a
 </html>

@@ -11,6 +11,7 @@ class userModel {
     private $lastname;
     private $email;
     private $phone;
+    private $role;
     
     function __construct($username, $password, $firstname, $lastname, $email, $phone) {
         $this->username = $username;

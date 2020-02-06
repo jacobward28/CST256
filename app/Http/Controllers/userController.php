@@ -15,5 +15,29 @@ class userController extends Controller
         $result = $userService->updateUser($user);
         return view("profile");
     }
+public function doDeleteUser()
+{
+    session_start();
+$userService = new userService();
+$delete = $userService->deleteUser();
+
+}
+
+public function DoUpdateUser()
+{
+    session_start();
+    $userService = new userService();
+    $update = $userService->updateUser();
     
+    return view('home');
+}
+
+public function doDisplayUser()
+{
+    session_start();
+    $userService = new userService();
+    $userArray = $userService->ViewUsers();
+    return view('displayUser')->with('userArray', $userArray);
+}
+
 }

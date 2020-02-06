@@ -1,7 +1,4 @@
-<?php
-use Illuminate\Http\Request;
-use Resources\views\navbar;
-?>
+
 @extends('layouts.appmaster')
 @section('title', 'Home Page')
 

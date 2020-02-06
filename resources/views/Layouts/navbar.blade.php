@@ -13,7 +13,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="../Views/Home.php">Home <span class="sr-only">(current)</span></a>
+      <form class="form-inline my-2 my-lg-0" action="doDisplay" method="post">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../Views/AboutUS.php">About</a>
@@ -21,11 +23,11 @@
       <li class="nav-item">
         <a class="nav-link" href="profile">Profile</a>
       </li>
-     <?php 
-     if (isset($_SESSION["role"]) && $_SESSION["role"]==1)
-     {
+      
+     @if (isset($_SESSION["role"]) && $_SESSION["role"]==1)
+     
          
-      ?>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Admin
@@ -34,16 +36,18 @@
           <a class="dropdown-item" href="../Views/AddBook.php"></a>
           <a class="dropdown-item" href="../Views/admin.php">View Jobs</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="displayUser">Show All Users</a>
+          <form class="form-inline my-2 my-lg-0" action="doDisplay" method="post">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+          <button class="dropdown-item" type="submit">Show all Users</button></form>
+          <div class="dropdown-divider"></div>
 		  <a class="dropdown-item" href="../Views/ShowOrder_Admin.php">Show All Listings</a>
+		  <div class="dropdown-divider"></div>
 		  <a class="dropdown-item" href="../Views/SearchOrderbydate.php">Show Order By Date</a>
 		  
         </div>
         </div>
       </li>
-      <?php 
-      }
-      ?>
+      @endif
       
       
     </ul>

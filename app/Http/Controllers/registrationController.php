@@ -16,10 +16,15 @@ class registrationController extends Controller
     public function register(Request $request) 
     {
         $user = new userModel( $request->input('username'), $request->input('password'), $request->input('firstname'),
-            $request->input('lastname'), $request->input('email'), $request->input('phone'));
+            $request->input('lastname'), $request->input('email'), $request->input('phone'), null);
         $ds = new dataService();
         $register = $ds->reg($user);
         $register;
-        return view('login');  
+
+        if($duplicateUser = true){ return view('register');}
+        else{
+        return view('login');
+        }
+
     }
 }

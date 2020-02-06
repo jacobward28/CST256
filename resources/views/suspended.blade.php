@@ -1,6 +1,5 @@
 @extends('layouts.appmasterlogin')
 @section('title', 'Login Page')
-<?php session_start()?>
 <html>
 <head>
 	<title>Login</title>
@@ -13,7 +12,7 @@
 <body>
 
 	<input type="hidden" name="_token"
-	value="<?php echo csrf_token();?> "/>
+	value="{{ csrf_token() }}"/>
 	<div class="container">
   	<h2 align="center">You have been suspended! If you believe this is an error, contact a system admin.</h2>
   	

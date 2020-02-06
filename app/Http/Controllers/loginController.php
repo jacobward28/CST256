@@ -16,19 +16,24 @@ class loginController extends Controller
      */
     public function log(Request $request) {
 
-       $user = new userModel($request->input('username'), $request->input('password'), null, null, null, null, null);
+       $user = new userModel($request->input('username'), $request->input('password'), null, null, null, null, $request->input('role'));
        
        $securityService = new securityService();
        
        $result = $securityService->login($user);
        
+       
+       session_start();
+       $_SESSION["role"] = $user->getRole();
+       $_SESSION["username"] = $request->input('username');
+
+
        if($_SESSION["role"] == 3)
        {
            return view('suspended');
        }
        else
        {
-       
        return view('home');
         }
                         

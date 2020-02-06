@@ -1,7 +1,7 @@
 <?php
 namespace App\Services\Data;
 use Illuminate\Http\Request;
-use App\Http\Controllers\databaseController;
+use App\Services\Utility\databaseConnector;
 use App\Http\Controllers\userController;
 use App\models\usermodel;
 use App\Services\Data\dataservice;
@@ -18,7 +18,7 @@ class userService {
     
     function ViewUsers() {
         $usersA = array();
-        $db = new databaseController();
+        $db = new databaseConnector();
         $connect = $db->connect();
         if ($connect->connect_error)
         {
@@ -57,7 +57,7 @@ class userService {
     function getUserById(int $id)
     {
         
-        $db = new databaseController();
+        $db = new databaseConnector();
         $connect = $db->connect();
         if ($connection->connect_error)
         {
@@ -90,6 +90,37 @@ class userService {
         return $user;
     }
     
+    public function deleteUser()
+    {
+        $id = $_POST['user_id'];
+        $db = new databaseConnector();
+        $connect = $db->connect();
+        if ($connect->connect_error)
+        {
+            die("Connection failed: " . $connection->connect_error);
+        }
+        $query = "Delete FROM users WHERE id = '$id'";
+        $result = mysqli_query($connect, $query);
+        return $result;
+        
+    }
+    
+    public function updateUser()
+    {
+        $id = $_POST['user_id'];
+        if($_POST['role'] == 'admin'){$role = '1';}
+        elseif($_POST['role'] == 'suspend'){$role = '3';}
+        else{$role = '0';}
+        $db = new databaseConnector();
+        $connect = $db->connect();
+        if ($connect->connect_error)
+        {
+            die("Connection failed: " . $connection->connect_error);
+        }
+        $query = "UPDATE users SET role = '$role' WHERE id = '$id'";
+        $result = mysqli_query($connect, $query);
+        return $result;
+    }
     
 }
 

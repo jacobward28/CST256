@@ -1,11 +1,4 @@
-<?php
-use Illuminate\Http\Request;
-use Resources\views\navbar;
-use App\models\userModel;
-use App\services\Data\dataService;
-use App\services\Data\userService;
-use App\Http\Controllers\userController;
-?>
+
 @extends('layouts.appmaster')
 @section('title', 'Users-Admin')
 
@@ -60,48 +53,48 @@ use App\Http\Controllers\userController;
     </tr>
   </thead>
   <tbody>
-  <?php 
-  $UserService = new userService();
-  $userArray = $UserService->ViewUsers();
   
-  foreach ($userArray as $user)
-  {
-  ?>
+  @foreach($userArray as $user)
+  
+  
 	<tr>
       
-      <td><?php echo $user->getFirstname()?></td>
-      <td><?php echo $user->getLastname()?></td>
-      <td><?php echo $user->getUsername()?></td>
+      <td>{{ $user->getFirstname() }}</td>
+      <td>{{ $user->getLastname() }}</td>
+      <td>{{ $user->getUsername() }}</td>
       
-      <form action="../updateUserHandler.php" class="input-group" method = "get">
-      <td><?php  if($user->getRole() == 1){?>
+      <form action="doUpdate" class="input-group" method = "post">
+      	<input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+      <td>@if($user->getRole() == 1)
           <input type="text"  value='admin' name="role"
           />
-          <?php } if($user->getRole() == 3){?>
+          @elseif($user->getRole() == 3)
           <input type="text"  value='suspended' name="role"
           />
-      <?php } if($user->getRole() == 0){ ?>
-          <input type='text'  value='user' name='role'/>
+      	@elseif($user->getRole() == 0)
+          <input type='text'  value='user' name='role'
+          />
+          @endif
           
-      <?php } ?></td>
+      </td>
      
       <td>
           
-          	<input type="hidden"  value="<?php echo $user->getId()?>" name="user_id"/>
+          	<input type="hidden"  value="{{ $user->getId() }}" name="user_id"/>
           	<input type="submit" class="btn btn-success" name="update" Value="Update"/>
       	 
   	  </td>
   	   </form>
       <td>
-          <form action="../DeleteUserHandler.php" class="input-group" method = "get">
-          <input type="hidden"  value="<?php echo $user->getId()?>" name="id"/>
+          <form action="doDelete" class="input-group" method = "post">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+          <input type="hidden"  value="{{ $user->getId() }}" name="user_id"/>
           <input type="submit" class="btn btn-primary " name="Delete" Value="Delete"/>
       </form>
       </td>
       
     </tr>
-
-    <?php }?>
+@endforeach
     
   </tbody>
 </table>

@@ -1,7 +1,7 @@
 <?php
 namespace App\Services\Data;
 use Illuminate\Http\Request;
-use App\Http\Controllers\databaseController;
+use App\Services\Utility\databaseConnector;
 use App\Models\userModel;
 use App\Http\Controllers\userController;
 
@@ -14,7 +14,7 @@ class dataService {
      */
     public function reg(userModel $user)
     {
-        $db = new databaseController();
+        $db = new databaseConnector();
         $connect = $db->connect();
         $username = $user->getUsername();
         $password = $user->getPassword();
@@ -22,17 +22,30 @@ class dataService {
         $lastname = $user->getLastname();
         $email = $user->getEmail();
         $phone = $user->getPhone();
-        $sql_statement = "INSERT INTO `users`(`username`, `password`, `firstname`, `lastname`, `email`, `phone`) VALUES 
-('$username', '$password', '$firstname', '$lastname', '$email', '$phone');";
+        $role = $user->getRole();
+        $sql_statement = "SELECT username FROM users";
         $result = mysqli_query($connect, $sql_statement);
-        return $result;
+        $row = $result->fetch_assoc();
+        $usernameInUse = $row['username'];
+        if($username === $usernameInUse) {
+            $duplicateUser = true;
+            echo "Username is already in use.";
+            
         }
-        
+        else {
+        $sql_statement2 = "INSERT INTO `users`(`username`, `password`, `firstname`, `lastname`, `email`, `phone`) VALUES 
+('$username', '$password', '$firstname', '$lastname', '$email', '$phone','$role');";
+        $result2 = mysqli_query($connect, $sql_statement2);
+        return $result2;
+        }
+    }
         public function log(userModel $user) {
-            $db = new databaseController();
+            $db = new databaseConnector();
             $connect = $db->connect();
             $username = $user->getUsername();
             $password = $user->getPassword();
+            
+
             
             
             $sql_statement = "SELECT * FROM `users` WHERE `username` = '$username' AND `password` = '$password' LIMIT 1";
@@ -40,9 +53,9 @@ class dataService {
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
                 $role = $row["role"];
-                $userName = $row["username"];
-                $_SESSION["role"] = $role;
-                $_SESSION["username"] = $username;
+                $user->setRole($role);
+
+
             }
             else {
                 echo "login failed";
@@ -54,7 +67,7 @@ class dataService {
         
         public function Read()
         {
-            $db = new databaseController();
+            $db = new databaseConnector();
             $connect = $db->connect();
             
 

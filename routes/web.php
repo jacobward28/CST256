@@ -30,21 +30,29 @@ Route::get('/registrationpage', function () {
 //points the view to the controller to process the function and send back to the view
 Route::post('/register', 'registrationController@register');
 
-Route::get('/logout', function()
-{
-    return view('logout');
-});
 
-route::post('/doLogout', 'loginController@onLogout');
 
-Route::get('/displayUser', function()
-{
+Route::get('/doDisplay', function() {
     return view('displayUser');
 });
 
-route::post('/showUsers', 'userController@displayUsers');
+route::post('/doDisplay', 'userController@doDisplayUser');
 
 Route::get('/suspended', function()
 {
     return view('suspended');
 });
+
+// route for update button the display user page
+Route::get('/displayUserUpdate', function () {
+    return view("displayUser");
+});
+    //points the view to the controller to process the function and send back to the view
+    Route::post('/doUpdate', 'userController@DoUpdateUser');
+    
+// Route for the delete button on the display user page
+Route::get('/displayUserDelete', function () {
+    return view("displayUser");
+});
+//points the view to the controller to process the function and send back to the view
+Route::post('/doDelete', 'userController@DoDeleteUser');

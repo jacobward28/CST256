@@ -142,8 +142,16 @@ class userService {
             password = '$password', 
             phone='$phone' 
             where ID = '$id'";
-        $result = mysqli_query($connect, $query);
-        return $result;
+        $row = mysqli_query($connect, $query);
+        $user = new userModel($row["username"],
+            $row["password"],
+            $row["firstname"],
+            $row["lastname"],
+            $row["email"],
+            $row["phone"],
+            $row["role"]
+            );
+        return $user;
     }
 }
 

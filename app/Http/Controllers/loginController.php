@@ -39,9 +39,17 @@ class loginController extends Controller
        return view('home');
     }
                         
-}
+    }
+    
+    public function onLogout(){
+        session_start();
+        unset($_SESSION["role"]);
+        unset($_SESSION["id"]);
+        unset($_SESSION["username"]);
+        return view('login');
+    }
        
         
-    }
+}
 
 

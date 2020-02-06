@@ -23,11 +23,11 @@
       </li>
       <li class="nav-item">
       <form action="getUser" method="get">
-      	<button type="submit"><a class="nav-link" >Profile</a></button>
+      	<a class="nav-link" ><button type="submit">Profile</button></a>
       </form>
         
       </li>
-      
+       @if (isset($_SESSION["role"]) && $_SESSION["role"]==1)
     
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,14 +48,14 @@
         </div>
         </div>
       </li>
-
+@endif
       
     </ul>
     <form class="form-inline my-2 my-lg-0" action="search.php">
       <input class="form-control mr-sm-2" type="search" placeholder="Search Job by Title" aria-label="Search" name ="search" >
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-    <form class="form-inline my-2 my-lg-0" action="doLogout">
+    <form class="form-inline my-2 my-lg-0" action="doLogout" method="post">
       <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Log Out</button>
     </form>
   </div>

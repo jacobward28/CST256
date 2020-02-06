@@ -32,7 +32,7 @@ Route::post('/register', 'registrationController@register');
 
 Route::get('/logout', function()
 {
-    return view('logout');
+    return view('login');
 });
 Route::post('/updateUser', 'userController@updateUser');
 route::post('/doLogout', 'loginController@onLogout');

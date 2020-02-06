@@ -22,21 +22,14 @@ class loginController extends Controller
        
        $result = $securityService->login($user);
        
-<<<<<<< HEAD
        $role = $result["role"];
-       
-       $_SESSION["role"] = $role;
-       $_SESSION["username"] = $result["username"];
-       $_SESSION["userid"] = $result["ID"];
-      
-=======
-       
+       echo $role;
+       echo $result["ID"];
        session_start();
-       $_SESSION["role"] = $user->getRole();
-       $_SESSION["username"] = $request->input('username');
-
-
->>>>>>> master
+       $_SESSION["role"] = $role;
+       $_SESSION["id"]=$result["ID"];
+       $_SESSION["username"] =  $request->input('username');
+      
        if($_SESSION["role"] == 3)
        {
            return view('suspended');

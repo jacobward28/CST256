@@ -53,8 +53,7 @@ class dataService {
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
 
-                $role = $row["role"];
-                $user->setRole($role);
+               return $row;
             }
             else {
                 echo "login failed";
@@ -65,9 +64,6 @@ class dataService {
         {
             $db = new databaseConnector();
             $connect = $db->connect();
-            
-
-            
             $sql_stmt = "SELECT * FROM users";
             $result = mysqli_query($connect, $sql_stmt);
             $row = mysqli_fetch_assoc($result);
@@ -84,7 +80,7 @@ class dataService {
         function getUserByUsername(string $id)
         {
             echo $id;
-            $db = new databaseController();
+            $db = new databaseConnector();
             $connect = $db->connect();
             
             

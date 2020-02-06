@@ -2,16 +2,11 @@
 
 
 namespace App\Services\Data;
-<<<<<<< HEAD
-use App\Models\userModel;
-use App\Http\Controllers\databaseController;
-=======
+
 use Illuminate\Http\Request;
 use App\Services\Utility\databaseConnector;
-use App\Http\Controllers\userController;
 use App\models\usermodel;
 use App\Services\Data\dataservice;
->>>>>>> master
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -42,7 +37,7 @@ class userService {
             {
                 
                 $user = new userModel(null, null, null, null, null, null, null);
-                $user->setId($row["id"]);
+                $user->setId($row["ID"]);
                 $user->setFirstname($row["firstname"]);
                 $user->setLastname($row["lastname"]);
                 $user->setUsername($row["username"]);
@@ -93,7 +88,7 @@ class userService {
         return $user;
     }
 
-public function deleteUser()
+    public function deleteUser()
     {
         $id = $_POST['user_id'];
         $db = new databaseConnector();
@@ -108,7 +103,7 @@ public function deleteUser()
         
     }
     
-    public function updateUser()
+    public function updateUserRole()
     {
         $id = $_POST['user_id'];
         if($_POST['role'] == 'admin'){$role = '1';}
@@ -127,16 +122,26 @@ public function deleteUser()
     
     function updateUserV2(userModel $user){
         
-        $db = new databaseController();
+        $db = new databaseConnector();
         $connect = $db->connect();
-
-    
-        $query = "update users set username = '$user->getUsername()', 
-            firstname = '$user->getFirstname()', 
-            lastname = '$user->getLastname()', 
-            email = '$user->getEmail()', 
-            password = '$user->getPassword()', 
-            phone='$user->getPhone()' where ID = '$user->getId()'";
+        if ($connect->connect_error)
+        {
+            die("Connection failed: " . $connection->connect_error);
+        }
+        $username = $user->getUsername();
+        $password = $user->getPassword();
+        $firstname = $user->getFirstname();
+        $lastname = $user->getLastname();
+        $email = $user->getEmail();
+        $phone = $user->getPhone();
+        $id = $user->getId();
+        $query = "update users set username = '$username', 
+            firstname = '$firstname', 
+            lastname = '$lastname', 
+            email = '$email', 
+            password = '$password', 
+            phone='$phone' 
+            where ID = '$id'";
         $result = mysqli_query($connect, $query);
         return $result;
     }

@@ -1,8 +1,10 @@
 <?php
+
+
 namespace App\Services\Data;
+
 use Illuminate\Http\Request;
 use App\Services\Utility\databaseConnector;
-use App\Http\Controllers\userController;
 use App\models\usermodel;
 use App\Services\Data\dataservice;
 
@@ -35,7 +37,7 @@ class userService {
             {
                 
                 $user = new userModel(null, null, null, null, null, null, null);
-                $user->setId($row["id"]);
+                $user->setId($row["ID"]);
                 $user->setFirstname($row["firstname"]);
                 $user->setLastname($row["lastname"]);
                 $user->setUsername($row["username"]);
@@ -59,29 +61,25 @@ class userService {
         
         $db = new databaseConnector();
         $connect = $db->connect();
-        if ($connection->connect_error)
-        {
-            die("Connection failed: " . $connection->connect_error);
-        }
         
-        $query = "select * from users where id = '$id'";
-        $result = mysqli_query($connection, $query);
-        $user = new userModel();
-        if($result != null && $result->num_rows== 1)
+        
+        $query = "select * from `users` where id = '$id' LIMIT 1";
+        $result = mysqli_query($connect, $query);
+        $user = null;
+        if(mysqli_num_rows($result) == 1)
         {
+            
             
             while($row = $result->fetch_assoc())
             {
-                
-                $user->setFirstname($row["firstname"]);
-                $user->setLastname($row["lastname"]);
-                $user->setUsername($row["username"]);
-                $user->setPassword($row["password"]);
-                $user->setRole($row["role"]);
-                
-                
-                
-                
+               $user = new userModel($row["username"], 
+                    $row["password"],
+                    $row["firstname"],
+                    $row["lastname"],
+                    $row["email"],
+                    $row["phone"],
+                    $row["role"]
+                    ); 
             }
         }
         else {
@@ -89,7 +87,7 @@ class userService {
         }
         return $user;
     }
-    
+
     public function deleteUser()
     {
         $id = $_POST['user_id'];
@@ -105,7 +103,7 @@ class userService {
         
     }
     
-    public function updateUser()
+    public function updateUserRole()
     {
         $id = $_POST['user_id'];
         if($_POST['role'] == 'admin'){$role = '1';}
@@ -122,6 +120,39 @@ class userService {
         return $result;
     }
     
+    function updateUserV2(userModel $user){
+        
+        $db = new databaseConnector();
+        $connect = $db->connect();
+        if ($connect->connect_error)
+        {
+            die("Connection failed: " . $connection->connect_error);
+        }
+        $username = $user->getUsername();
+        $password = $user->getPassword();
+        $firstname = $user->getFirstname();
+        $lastname = $user->getLastname();
+        $email = $user->getEmail();
+        $phone = $user->getPhone();
+        $id = $user->getId();
+        $query = "update users set username = '$username', 
+            firstname = '$firstname', 
+            lastname = '$lastname', 
+            email = '$email', 
+            password = '$password', 
+            phone='$phone' 
+            where ID = '$id'";
+        $row = mysqli_query($connect, $query);
+        $user = new userModel($row["username"],
+            $row["password"],
+            $row["firstname"],
+            $row["lastname"],
+            $row["email"],
+            $row["phone"],
+            $row["role"]
+            );
+        return $user;
+    }
 }
 
    

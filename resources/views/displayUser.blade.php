@@ -53,7 +53,6 @@
     </tr>
   </thead>
   <tbody>
-  
   @foreach($userArray as $user)
   
   

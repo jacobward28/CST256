@@ -52,16 +52,11 @@ class dataService {
             $result = mysqli_query($connect, $sql_statement);
             if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
-                $role = $row["role"];
-                $user->setRole($role);
 
-
+               return $row;
             }
             else {
                 echo "login failed";
-            
-                   
-
             }
         }
         
@@ -69,9 +64,6 @@ class dataService {
         {
             $db = new databaseConnector();
             $connect = $db->connect();
-            
-
-            
             $sql_stmt = "SELECT * FROM users";
             $result = mysqli_query($connect, $sql_stmt);
             $row = mysqli_fetch_assoc($result);
@@ -84,6 +76,37 @@ class dataService {
 
 
             
+        }
+        function getUserByUsername(string $id)
+        {
+            echo $id;
+            $db = new databaseConnector();
+            $connect = $db->connect();
+            
+            
+            $query = "select * from `users` where username = '$id' LIMIT 1";
+            $result = mysqli_query($connect, $query);
+            $user = null;
+            if(mysqli_num_rows($result) == 1)
+            {
+                
+                
+                while($row = $result->fetch_assoc())
+                {
+                    $user = new userModel($row["username"],
+                        $row["password"],
+                        $row["firstname"],
+                        $row["lastname"],
+                        $row["email"],
+                        $row["phone"],
+                        $row["role"]
+                        );
+                }
+            }
+            else {
+                echo"No User Found";
+            }
+            return $user;
         }
         
     }

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace App\Http\Controllers;
 
@@ -20,9 +20,11 @@ class registrationController extends Controller
         $ds = new dataService();
         $register = $ds->reg($user);
         $register;
+
         if($duplicateUser = true){ return view('register');}
         else{
         return view('login');
         }
+
     }
 }

@@ -22,12 +22,14 @@ class loginController extends Controller
        
        $result = $securityService->login($user);
        
-       
+       $role = $result["role"];
+       echo $role;
+       echo $result["ID"];
        session_start();
-       $_SESSION["role"] = $user->getRole();
-       $_SESSION["username"] = $request->input('username');
-
-
+       $_SESSION["role"] = $role;
+       $_SESSION["id"]=$result["ID"];
+       $_SESSION["username"] =  $request->input('username');
+      
        if($_SESSION["role"] == 3)
        {
            return view('suspended');
@@ -35,11 +37,19 @@ class loginController extends Controller
        else
        {
        return view('home');
-        }
+    }
                         
-        }
+    }
+    
+    public function onLogout(){
+        session_start();
+        unset($_SESSION["role"]);
+        unset($_SESSION["id"]);
+        unset($_SESSION["username"]);
+        return view('login');
+    }
        
         
-    }
+}
 
 

@@ -16,18 +16,19 @@
       <form class="form-inline my-2 my-lg-0" action="doDisplay" method="post">
       <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
         <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+        </form>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../Views/AboutUS.php">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../Views/AboutUS.php">Profile</a>
+      <form action="getUser" method="get">
+      	<a class="nav-link" ><button type="submit">Profile</button></a>
+      </form>
+        
       </li>
-      
-     @if (isset($_SESSION["role"]) && $_SESSION["role"]==1)
-     
-         
-      
+       @if (isset($_SESSION["role"]) && $_SESSION["role"]==1)
+    
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Admin
@@ -47,15 +48,14 @@
         </div>
         </div>
       </li>
-      @endif
-      
+@endif
       
     </ul>
     <form class="form-inline my-2 my-lg-0" action="search.php">
       <input class="form-control mr-sm-2" type="search" placeholder="Search Job by Title" aria-label="Search" name ="search" >
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-    <form class="form-inline my-2 my-lg-0" action="doLogout">
+    <form class="form-inline my-2 my-lg-0" action="doLogout" method="post">
       <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Log Out</button>
     </form>
   </div>

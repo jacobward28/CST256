@@ -13,6 +13,7 @@ class userModel {
     private $phone;
     private $role;
     
+    
     function __construct($username, $password, $firstname, $lastname, $email, $phone, $role) {
         $this->username = $username;
         $this->password = $password;

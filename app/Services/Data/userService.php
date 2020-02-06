@@ -1,10 +1,9 @@
 <?php
+
+
 namespace App\Services\Data;
-use Illuminate\Http\Request;
+use App\Models\userModel;
 use App\Http\Controllers\databaseController;
-use App\Http\Controllers\userController;
-use App\models\usermodel;
-use App\Services\Data\dataservice;
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -16,72 +15,32 @@ class userService {
         
     }
     
-    function ViewUsers() {
-        $usersA = array();
-        $db = new databaseController();
-        $connect = $db->connect();
-        if ($connect->connect_error)
-        {
-            die("Connection failed: " . $connection->connect_error);
-        }
-        
-        $query = "SELECT * from users";
-        $result = mysqli_query($connect, $query);
-        
-        if($result->num_rows > 0)
-        {
-            $i = 0;
-            while($row = $result->fetch_assoc())
-            {
-                
-                $user = new userModel(null, null, null, null, null, null, null);
-                $user->setId($row["id"]);
-                $user->setFirstname($row["firstname"]);
-                $user->setLastname($row["lastname"]);
-                $user->setUsername($row["username"]);
-                $user->setPassword($row["password"]);
-                $user->setRole($row["role"]);
-                
-                $usersA[$i] = $user;
-                $i++;
-                
-            }
-        }
-        else {
-            echo"No User Found";
-        }
-        
-        return $usersA;
-    }
+   
     
     function getUserById(int $id)
     {
         
         $db = new databaseController();
         $connect = $db->connect();
-        if ($connection->connect_error)
-        {
-            die("Connection failed: " . $connection->connect_error);
-        }
         
-        $query = "select * from users where id = '$id'";
-        $result = mysqli_query($connection, $query);
-        $user = new userModel();
-        if($result != null && $result->num_rows== 1)
+        
+        $query = "select * from `users` where id = '$id' LIMIT 1";
+        $result = mysqli_query($connect, $query);
+        $user = null;
+        if(mysqli_num_rows($result) == 1)
         {
+            
             
             while($row = $result->fetch_assoc())
             {
-                
-                $user->setFirstname($row["firstname"]);
-                $user->setLastname($row["lastname"]);
-                $user->setUsername($row["username"]);
-                $user->setPassword($row["password"]);
-                $user->setRole($row["role"]);
-                
-                
-                
-                
+               $user = new userModel($row["username"], 
+                    $row["password"],
+                    $row["firstname"],
+                    $row["lastname"],
+                    $row["email"],
+                    $row["phone"],
+                    $row["role"]
+                    ); 
             }
         }
         else {
@@ -90,7 +49,20 @@ class userService {
         return $user;
     }
     
+    function updateUser(userModel $user){
+        
+        $db = new databaseController();
+        $connect = $db->connect();
     
+        $query = "update users set username = '$user->getUsername()', 
+            firstname = '$user->getFirstname()', 
+            lastname = '$user->getLastname()', 
+            email = '$user->getEmail()', 
+            password = '$user->getPassword()', 
+            phone='$user->getPhone()' where ID = '$user->getId()'";
+        $result = mysqli_query($connect, $query);
+        return $result;
+    }
 }
 
    

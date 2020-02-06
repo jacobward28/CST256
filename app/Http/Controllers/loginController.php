@@ -22,6 +22,12 @@ class loginController extends Controller
        
        $result = $securityService->login($user);
        
+       $role = $result["role"];
+       
+       $_SESSION["role"] = $role;
+       $_SESSION["username"] = $result["username"];
+       $_SESSION["userid"] = $result["ID"];
+      
        if($_SESSION["role"] == 3)
        {
            return view('suspended');
@@ -30,9 +36,9 @@ class loginController extends Controller
        {
        
        return view('home');
-        }
+    }
                         
-        }
+}
        
         
     }

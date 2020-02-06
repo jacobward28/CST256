@@ -34,7 +34,7 @@ Route::get('/logout', function()
 {
     return view('logout');
 });
-
+Route::post('/updateUser', 'userController@updateUser');
 route::post('/doLogout', 'loginController@onLogout');
 
 Route::get('/profile', function()
